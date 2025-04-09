@@ -50,4 +50,32 @@
   
   })(window.jQuery);
 
+//extra-----------------------------------------------
+const answers = {};
+
+function saveAnswer(question, value) {
+    answers[question] = value;
+    localStorage.setItem('travelAnswers', JSON.stringify(answers));
+    console.log('Answer saved:', answers);
+}
+
+function submitAnswers() {
+    const requiredQuestions = ['tripType', 'transport', 'place', 'food'];
+    const unanswered = requiredQuestions.filter(q => !answers[q]);
+
+    if (unanswered.length > 0) {
+        alert("Please answer all questions before submitting.");
+        return;
+    }
+
+    alert("Thanks for submitting your preferences:\n\n" +
+        "Trip Type: " + answers.tripType + "\n" +
+        "Transport: " + answers.transport + "\n" +
+        "Place: " + answers.place + "\n" +
+        "Food: " + answers.food);
+
+    console.log("Final Submitted Answers:", answers);
+
+   
+}
 
